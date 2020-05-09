@@ -6,13 +6,13 @@ import psycopg2
 import pyexasol
 
 from revlibs.connections import config
-from revlibs.connections.connectors import ExasolConnector, PostgresConnector
+from revlibs.connections.connectors import BaseConnector, ExasolConnector, PostgresConnector
 from revlibs.connections.exceptions import ConnectionParamsError
 
 CONNECTORS = {"exasol": ExasolConnector, "postgres": PostgresConnector}
 
 
-def get_connector(name: str) -> Union[ExasolConnector, PostgresConnector]:
+def get_connector(name: str) -> BaseConnector:
     """Return connector object used for handling of connection.
 
     Database connection parameters will be loaded from YAML/JSON config stored
